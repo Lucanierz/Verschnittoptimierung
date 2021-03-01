@@ -1,3 +1,6 @@
+#!/usr/bin/python
+#-*- coding:utf-8 -*-
+
 import filehandler
 import algorithmus
 import argparse
@@ -59,8 +62,7 @@ if not args.read_storage and not args.check_storage:
 
         if args.add != 0:
             for i in range(len(data[0])):
-                print("subset: " + str(data[0][i]) + " minverschnitt: " + str(min(data[2][i])) + " ausgelagert: " + str(
-                lager[data[2][i].index(min(data[2][i]))]) + " mit " + str(args.add) + "mm Sägeblatt")
+                print("subset: " + str(data[0][i]) + " minverschnitt: " + str(min(data[2][i])) + " ausgelagert: " + str(lager[data[2][i].index(min(data[2][i]))]) + " mit " + str(args.add) + "mm Saegeblatt")
 
     else:
         print("Any length can't be over 13000")
