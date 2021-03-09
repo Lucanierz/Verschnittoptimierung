@@ -37,22 +37,22 @@ def kombinierterverschnitt(lager, eingabe, verbose, add):
         for j in itertools.combinations(eingabe, i):
             subsets.append(j)
     verschnitt = []
-    verschnittsäge = []
+    verschnittsaege = []
     for i in range(len(subsets)):
         verschnitt.append([])
-        verschnittsäge.append([])
+        verschnittsaege.append([])
         for j in range(len(lager)):
             if lager[j] - sum(subsets[i]) >= 0:
                 if add != 0:
-                    verschnittsäge[i].append(lager[j] - sum(subsets[i])+(add*len(subsets[i])))
+                    verschnittsaege[i].append(lager[j] - sum(subsets[i])+(add*len(subsets[i])))
                 verschnitt[i].append(lager[j] - sum(subsets[i]))
             else:
                 verschnitt[i].append(15000)
 
-    return subsets, verschnitt, verschnittsäge
+    return subsets, verschnitt, verschnittsaege
 
 
 
 def getminverschnitt(lager, eingabe, verschnitt):
     for i in range(len(verschnitt)):
-        print("der minimale Verschnitt für das Stück der länge: " + str(eingabe[i]) + " beträgt: " + str(min(verschnitt[i])) + " Das ausgelagerte Stück hat eine Länge von: " + str(lager[verschnitt[i].index(min(verschnitt[i]))]))
+        print("der minimale Verschnitt fuer das Stueck der laenge: " + str(eingabe[i]) + " betraegt: " + str(min(verschnitt[i])) + " Das ausgelagerte Stueck hat eine Laenge von: " + str(lager[verschnitt[i].index(min(verschnitt[i]))]))
