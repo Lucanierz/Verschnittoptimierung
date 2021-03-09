@@ -23,18 +23,21 @@ args = parser.parse_args()
 
 if args.lengths != None:
     eingabe = [int(item) for item in args.lengths.split(',')]
+
 if args.import_lengths != None:
     eingabe = list(map(int, filehandler.importfile(args.import_lengths).split(",")))
     print(eingabe)
 
-if args.export == None:
+if args.import_storage == None:
     filename = "default.json"
+
 else:
-    filename = args.export
+    filename = args.import_storage
 
 if not args.read_storage and not args.check_storage:
 
     if all(i <= 13000 for i in eingabe):
+
         if args.material == None or args.dimensions == None:
 
             if args.storage==None:
@@ -64,9 +67,16 @@ if not args.read_storage and not args.check_storage:
             for i in range(len(data[0])):
                 print("subset: " + str(data[0][i]) + " minverschnitt: " + str(min(data[2][i])) + " ausgelagert: " + str(lager[data[2][i].index(min(data[2][i]))]) + " mit " + str(args.add) + "mm Saegeblatt")
 
+        if args.export != None and args.export[-4:] == ".txt":
+            filehandler.exportdata(data, args.export)
+
+        if args.export != None and args.export[-4:] != ".txt":
+            print("Could not export, hast to be .txt")
+
     else:
         print("Any length can't be over 13000")
         exit()
+
 elif args.read_storage:
 
     lager = json.loads(filehandler.importfile(filename))
@@ -89,6 +99,7 @@ elif args.read_storage:
             print(json.dumps(lager[obj][args.dimensions], indent=4, sort_keys=True))
 
 elif args.check_storage:
+
     lager = json.loads(filehandler.importfile(filename))
     key = list(lager.keys())
 

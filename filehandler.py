@@ -13,3 +13,9 @@ def importfile(path):
     with open(path, 'r') as file:
         data = file.read()
     return data
+
+def exportdata(data, filename):
+
+    f = open(filename, "w+")
+    f.write(str(data))
+    f.close()
